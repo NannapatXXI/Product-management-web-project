@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div class="stars-container" id="starsContainer"></div>
+    
+    <div class="constellation" id="constellation"></div>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <h1>สมัครสมาชิก</h1>
+            <p>กรุณาใส่ข้อมูลเพื่อสมัครสมาชิก</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">ชื่อผู้ใช้หรืออีเมล:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">รหัสผ่าน:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="password">เมล:</label>
+                <input type="email" id="email" name="password" required>
+            </div>
+            <button type="submit" class="login-btn" onclick="Register(event)">สมัครสมาชิก</button>
+        </form>
+        <div class="register-link">
+            <p><a href="#" onclick="BackLoginPage()">มี Account อยู่แล้ว ?</a></p>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

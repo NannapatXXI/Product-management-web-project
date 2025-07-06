@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" href="css/stock.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+
+
+<div class="background-contend">
+  
+  <div class="control-contentmidle">
+    <div class="row">
+
+    <div class="col-2">
+      <div class="control-left-content">
+        <div class="Top-header">
+          <h2> XXI</h2>
+        </div>
+        <div class="botton-content">
+          <div class="content">
+            
+            <div  class="addUser-btn">
+                <a href="maincontent.html">
+                    <div class="control-addUser">
+                        <i class="fa-solid fa-plus"></i>
+                        <p>Add product</p>
+                     </div>
+                </a>
+            </div>
+            <div class="stock-btn">
+                  <div class="control-stockbtn">
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                    <p>Stock</p>
+                  </div>
+              </div>
+            <div class="comming soon">
+              <p>Product history</p>
+            </div>
+           
+            <div class="about-btn">
+              <a href="about.html">
+              <p>about</p>
+            </a>
+            </div>
+          
+        </div>
+        </div>
+      </div>
+      
+     </div>
+
+    <div class="col-10">
+     
+      <div class="Top-content">
+        <a href="login.html">
+         <p>Logout</p>
+        </a>
+      </div>
+
+      <div class="control-content">
+        <div class="header-content">
+         
+            <div class="left"> </div>
+            <div class="center">
+              <span> stock</span>
+            </div>
+            <div class="right">
+              <div id="successMessage-main" class="success-message"></div>
+              <div id="errorMessage-main" class="error-message"></div>
+                 </div>
+         </div>
+        </div>
+        <div class="Input-content">
+           <div class="contain-btn">
+    
+             <!-- ปุ่มเปิด modal -->
+            <button id="btn-openwindowforadd"  onclick="openModal()"><i class="bi bi-person-plus-fill"></i></button>
+        </div>
+      </div>
+      <div class="control-tabel">
+        <div class="table-responsive"" style="max-height: 400px;" > 
+          <table border="1" id="userTable" class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>ลำดับ</th>
+                <th>ID</th>
+                <th>Id product</th>
+                <th>name</th>
+                <th>category</th>
+              
+                <th>price</th>
+                <th>unit</th>
+                <th>update at</th>
+                <th>ฟังก์ชั่น</th>
+              </tr>
+            </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+        <div class="control-buttontable">
+          <div class="button">
+            <button id="prevBtn" onclick="prevPage()">Previous</button>
+            <span id="pageInfo" style="margin-left: 15px;"></span>  
+            
+            <button id="nextBtn" onclick="nextPage()">Next</button>
+           
+          </div>
+         </div>
+        </div>
+      </div>
+    
+
+  <!-- หน้าต่างไว้เพิ่มผู้ใช้ -->
+  <div id="customModal" class="modal">
+    <div class="modal-content">
+     
+    
+     <h1>เพิ่มสินค้า</h1>
+     <div id="successMessage-add" class="success-message"></div>
+     <div id="errorMessage-add" class="error-message"></div>
+    
+     <input type="text" id="IDproduct" placeholder="ID สินค้า">
+      <input type="text" id="nameproduct" placeholder="ชื่อ">
+      <input type="text" id="category" placeholder="ประเภท">
+      <input type="text" id="price" placeholder="ราคาขาย">
+      <input type="text" id="cost" placeholder="ราคาทุน">
+      <div class="controlunit">
+        <select id="countingunit" name="counting unit Product">
+          <option  value="">-- เลือก Unit: --</option>
+          <option value="LITER">LITER</option>
+          <option value="BOTTLE">BOTTLE</option>
+          <option value="GRAM">GRAM</option>
+          <option value="KILOGRAM">KILOGRAM</option>
+          <option value="METER">METER</option>
+          <option value="BOX">BOX</option>
+          <option value="PIECE">PIECE</option>
+          <option value="PCS">PCS</option>
+          <option value="MILLILITER">MILLILITER</option>
+          <option value="CENTIMETER">CENTIMETER</option>
+          <option value="PACK">PPACKCS</option>
+        </select> 
+      </div>
+      
+    
+      <button class="btn-addproduct" onclick="addProduct()">เพิ่ม</button>
+     
+      <button class="close-btn" onclick="closeModal()">ปิด</button>
+    </div>
+  </div>
+
+<!-- หน้าต่างไว้แก้ผู้ใช้ -->
+  <div id="customUser" class="User">
+    <div class="User-content">
+     <h1>แก้ไขผู้ใช้มาแก้ด้วย</h1>
+
+      <input type="hidden" id="hiddenInput" name="myValue" value="ข้อความที่ต้องการเก็บ">
+      <input type="text" id="firstname-edit" placeholder="ชื่อ">
+      <input type="text" id="lastname-edit" placeholder="นามสกุล">
+      <div class="control-btn">
+        <button class="btn-onedit"onclick="editUserInTable()">แก้ไขผู้ใช้</button>
+        <button class="close-btn" onclick="closeWindowEdit()">ปิด</button>
+     
+      </div>
+      </div>
+  </div>
+
+<!-- หน้าต่างไว้แสดงข้อความ alert  -->  
+  <div id="alertWindow" class="alert-win">
+    <div class="alert-content">
+      <input type="hidden" id="hiddenInputforDelete" name="myValue" value="ข้อความที่ต้องการเก็บ">
+        <h1>ลบสินค้า</h1>
+        <p id="id" class="userInfo"></p>
+        <p id="productid"></p>
+        <p id="categoryproduct"></p>
+       
+        <div class="control-btn">
+          <button class="btn-onDelete"onclick="confirmDeleteUser()">ยืนยัน</button>
+          <button class="close-btn" onclick="closeWindowEdit()">ปิด</button>
+       
+        </div>
+      </div>
+  </div>
+  
+  
+
+    </div>
+    
+   </div>
+  </div>
+</div>
+
+  
+
+
+<script src="js/miancontent.js"></script>
+
+</body>
+</html>
