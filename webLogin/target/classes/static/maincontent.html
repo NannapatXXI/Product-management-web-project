@@ -69,7 +69,7 @@
          
             <div class="left"> </div>
             <div class="center">
-              <span>📋 สินค้า</span>
+              <span> Product</span>
             </div>
             <div class="right">
               <div id="successMessage-main" class="success-message"></div>
@@ -96,6 +96,8 @@
                 <th>category</th>
               
                 <th>price</th>
+                <th>cost</th>
+                <th>quantity</th>
                 <th>unit</th>
                 <th>update at</th>
                 <th>ฟังก์ชั่น</th>
@@ -126,11 +128,39 @@
      <div id="successMessage-add" class="success-message"></div>
      <div id="errorMessage-add" class="error-message"></div>
     
-     <input type="text" id="IDproduct" placeholder="ID สินค้า">
-      <input type="text" id="nameproduct" placeholder="ชื่อ">
-      <input type="text" id="category" placeholder="ประเภท">
-      <input type="text" id="price" placeholder="ราคาขาย">
-      <input type="text" id="cost" placeholder="ราคาทุน">
+     <div class="form-group">
+        <input type="text" id="IDproduct"  class="form-input"placeholder=" " required>
+        <label for="IDproduct"  class="form-label" >ID product</label>
+     </div>
+    
+     <div class="form-group">
+        <input type="text" id="nameproduct" class="form-input" placeholder=" "required>
+        <label for="name" class="form-label"  >Name Product</label>
+     </div>
+    
+    <div class="form-group"> 
+      <input type="text" id="price" class="form-input"  placeholder=" " required>
+      <label fr="price" class="form-label"  >Price</label>
+
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="cost" class="form-input"  placeholder=" " required>
+      <label for="cost" class="form-label"  >Cost</label>
+    </div>
+    
+    <div class="form-group">
+      <input type="text" id="quantity" class="form-input"  placeholder=" " required>
+      <label for="quantity" class="form-label"  >Quantity</label>
+    </div>
+    
+    <div class="form-group">
+      <input type="text" id="category" class="form-input"  placeholder=" " required>
+      <label for="catagory" class="form-label"  >Category</label>
+    </div>
+     
+
+
       <div class="controlunit">
         <select id="countingunit" name="counting unit Product">
           <option  value="">-- เลือก Unit: --</option>
@@ -158,13 +188,58 @@
 <!-- หน้าต่างไว้แก้ผู้ใช้ -->
   <div id="customUser" class="User">
     <div class="User-content">
-     <h1>แก้ไขผู้ใช้มาแก้ด้วย</h1>
+     <h1>Edit Product</h1>
+     <input type="hidden" id="hiddenInput" name="myValue" value="ข้อความที่ต้องการเก็บ">
 
-      <input type="hidden" id="hiddenInput" name="myValue" value="ข้อความที่ต้องการเก็บ">
-      <input type="text" id="firstname-edit" placeholder="ชื่อ">
-      <input type="text" id="lastname-edit" placeholder="นามสกุล">
+     <div class="form-group">
+      <input type="text" id="IDproduct-edit" class="form-input" placeholder=" " required>
+      <label for="catagory" class="form-label"  >ID Product</label>
+    </div>
+      
+    <div class="form-group">
+      <input type="text" id="nameproduct-edit"class="form-input" placeholder=" "required>
+      <label for="catagory" class="form-label"  >Name </label>
+    </div>
+    
+    <div class="form-group">
+      <input type="text" id="category-edit"class="form-input" placeholder=" "required>
+      <label for="catagory" class="form-label"  >Category</label>
+    </div>
+
+     <div class="unitprodut-edit">
+        <select id="unitprodut-edit" name="counting unit Product">
+          <option  value="">-- เลือก Unit: --</option>
+          <option value="LITER">LITER</option>
+          <option value="BOTTLE">BOTTLE</option>
+          <option value="GRAM">GRAM</option>
+          <option value="KILOGRAM">KILOGRAM</option>
+          <option value="METER">METER</option>
+          <option value="BOX">BOX</option>
+          <option value="PIECE">PIECE</option>
+          <option value="PCS">PCS</option>
+          <option value="MILLILITER">MILLILITER</option>
+          <option value="CENTIMETER">CENTIMETER</option>
+          <option value="PACK">PPACKCS</option>
+        </select> 
+      </div>
+
+    <div class="form-group">
+      <input type="text" id="price-edit" class="form-input" placeholder=" "required>
+      <label for="catagory" class="form-label"  >Price</label>
+    </div>
+    
+    <div class="form-group">
+      <input type="text" id="cost-edit" class="form-input" placeholder=" "required>
+      <label for="catagory" class="form-label"  >Cost</label>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="quantity-edit" class="form-input" placeholder=" "required>
+      <label for="catagory" class="form-label"  >Quantity</label>
+    </div>
+     
       <div class="control-btn">
-        <button class="btn-onedit"onclick="editUserInTable()">แก้ไขผู้ใช้</button>
+        <button class="btn-onedit"onclick="editProductInTable()">แก้ไขผู้ใช้</button>
         <button class="close-btn" onclick="closeWindowEdit()">ปิด</button>
      
       </div>

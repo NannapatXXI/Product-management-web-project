@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // ปิด csrf
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/api/auth/**","/api/auth/createProduct").permitAll()
+                .requestMatchers("/api/auth/**","/api/auth/createProduct","/api/auth/editProduct/*").permitAll()
                 .requestMatchers("/", "/maincontent.html", "/login.html", "/register.html", "/about.html", "/stock.html").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated()

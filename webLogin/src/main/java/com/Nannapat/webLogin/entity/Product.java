@@ -27,11 +27,15 @@ public class Product {
     @Column(name = "category")
     private String category;
 
+
     @Column(name = "price")
     private BigDecimal price;
-    
+ 
     @Column(name = "cost")
     private BigDecimal cost;
+
+    @Column(name = "quantity")
+    private int quantity;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "unit", length = 50)
@@ -50,7 +54,12 @@ public class Product {
     
     // Constructor with parameters
    
-    
+    public int getQuantity(){
+        return quantity;
+    }
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
     // Getters - แก้ไขชื่อให้ถูกต้อง
     public Long getProductId() {
         return productId;
@@ -135,6 +144,7 @@ public class Product {
                 ", category ='" + category + '\'' +
                 ", price=" + price +
                 ", cost=" + cost +
+                ", quantity=" + quantity +
                 ", unit=" + unit +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

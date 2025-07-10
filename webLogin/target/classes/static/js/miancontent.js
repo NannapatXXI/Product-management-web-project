@@ -26,6 +26,8 @@ function loadUsers(page) {
             <td>${product.category}</td>
             <td>${product.price}</td>
             <td>${product.cost}</td>
+            <td>${product.quantity}</td>
+            <td>${product.unit}</td>
             <td>${formattedDate}</td>
             <td>
                 <button class="action-btn"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -79,19 +81,32 @@ function loadUsers(page) {
   
   function handleActionButtonClick(event) {
     const row = event.target.closest('tr');
-    const userId = row.cells[1].textContent;
-    const firstname = row.cells[2].textContent;
-    const lastname = row.cells[3].textContent;
-    openWindowEdit(userId,firstname,lastname);
+    const IDPRO = row.cells[1].textContent;
+    const productid = row.cells[2].textContent;
+    const nameproduct = row.cells[3].textContent;
+    const categoryproduct = row.cells[4].textContent;
+    const price = row.cells[5].textContent;
+    const cost = row.cells[6].textContent;
+    const quantity = row.cells[7].textContent;
+    const unit = row.cells[8].textContent;
+    openWindowEdit(IDPRO,productid,nameproduct,categoryproduct,price,cost,quantity,unit);
    
    }
 
 const editUser = document.getElementById("customUser");
-  function openWindowEdit(userId,firstname,lastname) {
+  function openWindowEdit(IDPRO,productid,nameproduct,categoryproduct,price,cost,quantity,unit) {
     editUser.style.display = "flex";
-    document.getElementById('hiddenInput').value = userId;
-    document.getElementById('firstname-edit').value = firstname;
-    document.getElementById('lastname-edit').value = lastname;
+    document.getElementById('hiddenInput').value = IDPRO;
+    document.getElementById('IDproduct-edit').value = productid;
+    document.getElementById('nameproduct-edit').value = nameproduct;
+    document.getElementById('category-edit').value = categoryproduct;
+    document.getElementById('unitprodut-edit').value = unit;
+    
+    console.log(unit);
+    
+    document.getElementById('price-edit').value = price;
+    document.getElementById('cost-edit').value =cost;
+    document.getElementById('quantity-edit').value =quantity;
   }
 
   
@@ -131,26 +146,54 @@ const editUser = document.getElementById("customUser");
     });
 }
 
-function editUserInTable(){
-    const firstname = document.getElementById('firstname-edit').value;
-    const lastname = document.getElementById('lastname-edit').value;
-    const id = document.getElementById('hiddenInput').value ;
-      if (firstname == "" || lastname == "") {
-        if (firstname == "") {
-            showError("กรุณากรอกชื่อก่อน : ");
-        }else if (lastname == "") {
-            showError("กรุณากรอกนามสกุลก่อน : ");
-        }else{
-            showError("กรุณากรอกฟอร์มก่อน");
-        }
+function editProductInTable(){
+   
+   const id =  document.getElementById('hiddenInput').value ;
+   const IDPRO =  document.getElementById('IDproduct-edit').value ;
+    const nameproduct = document.getElementById('nameproduct-edit').value ;
+    const categoryproduct = document.getElementById('category-edit').value ;
+    const unitprodut = document.getElementById('unitprodut-edit').value ;
+    
+   
+    const price = document.getElementById('price-edit').value;
+    const unit = document.getElementById('cost-edit').value;
+    const quantity = document.getElementById('quantity-edit').value ;
+    
+    
+    console.log();
+    
+      if (IDPRO == "" || nameproduct == "" || categoryproduct == "" ) {
+        if (IDPRO == "") {
+            showError("กรุณากรอกไอดีสินค้าก่อน : ");
+        }else if (nameproduct == "") {
+            showError("กรุณากรอกชื่อสินค้าก่อน : ");
+        }else if(categoryproduct == ""){
+          showError("กรุณากรอกหมวดหมู่สินค้าก่อน : ");
+        } else if(quantity == ""){
+          showError("กรุณากรอกจำนวนสินค้าก่อน")
+          
+      }else{
+        showError("กรุณากรอกฟอร์มก่อน");
+      }
+       
     }else{
-        fetch(`/api/auth/editUser/${id}`,{
+        fetch(`/api/auth/editProduct/${id}`,{
             method: 'PUT',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({id,firstname,lastname})
+            body: JSON.stringify({
+              IDproduct: IDPRO,
+              name: nameproduct,
+              category: categoryproduct,
+              price : price,
+              cost : unit,
+              quantity :quantity,
+              unit : unitprodut
+
+            })
         }).then(() => {
             loadUsers(currentPage);
         });
+        showSuccess("แก้ไขสินค้าเรียบร้อย")
         setTimeout(() => {
             closeWindowEdit();
          }, 1000);
@@ -164,13 +207,15 @@ const category = document.getElementById('category').value;
 const price = document.getElementById('price').value;
 const cost = document.getElementById('cost').value;
 const IDproduct = document.getElementById('IDproduct').value;
+const quantity = document.getElementById('quantity').value;
+
 const selectEl = document.getElementById('countingunit');
 const selectedValue = selectEl.value;
 console.log("ที่เราเลือก:", selectedValue);
  
    
 
-if (name == "" || category == "" || price == "" || cost == ""|| selectedValue == "" || IDproduct == "") {
+if (name == "" || category == "" || price == "" || cost == ""|| selectedValue == "" || IDproduct == "" || quantity == "") {
     if (name == "") {
         showError("กรุณากรอกชื่อก่อน : ","add");
     }else if (category == "") {
@@ -188,6 +233,9 @@ if (name == "" || category == "" || price == "" || cost == ""|| selectedValue ==
   }else if (IDproduct == "") {
     showError("กรุณากรอกไอดีสินค้าก่อน : ","add");
   
+  }else if (quantity == "") {
+    showError("กรุณากรอกจำนวนสินค้าก่อน : ","add");
+  
   }else {
           showError("กรุณากรอกฟอร์มก่อน","add");
     }
@@ -196,10 +244,7 @@ if (name == "" || category == "" || price == "" || cost == ""|| selectedValue ==
  
    
 } else {
-  console.log("ที่เราเลือก:", selectedValue);
-  console.log(name);
-  console.log(category);
-  
+ 
   
     fetch('/api/auth/createProduct', {
         method: 'POST',
@@ -210,6 +255,7 @@ if (name == "" || category == "" || price == "" || cost == ""|| selectedValue ==
           price,
           cost,
           IDproduct,
+          quantity,
           unit: selectedValue
         }) 
       })
@@ -222,6 +268,8 @@ if (name == "" || category == "" || price == "" || cost == ""|| selectedValue ==
         document.getElementById('category').value= "";
         document.getElementById('price').value= "";
         document.getElementById('cost').value= "";
+        document.getElementById('quantity').value= "";
+
         selectEl.selectedIndex = 0;
         setTimeout(() => {
        closeModal();

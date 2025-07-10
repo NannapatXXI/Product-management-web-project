@@ -189,6 +189,7 @@ body {
                 left: 50%;
                 transform: translateX(-50%);
                 color: #ffffff;
+                font-size: 50px;
                 
               }
               & .left, .right {
@@ -234,6 +235,8 @@ body {
             
         }
         & .control-tabel{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
            & .control-buttontable{
                display: flex;
                align-items: center;
@@ -329,12 +332,10 @@ body {
             color: rgb(0, 0, 0);
             border: none;
             padding: 8px 16px;
-            margin-top: 20px;
-            margin-right: 10px;
-            border-radius: 8px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
 
-            cursor: pointer;
-          
   }
   /* กล่อง modal */
   .modal-content {
@@ -383,6 +384,72 @@ body {
        
     }
    
+    /*& .control-btn-IDproduct{
+       & #IDproduct{
+            padding: 10px;
+            margin-bottom:  10px;
+            width: 100%;
+          
+        }
+        & label{
+            position: absolute;
+            top: 90px;
+            background: #fff;
+            left: 40px;
+            color: #888;
+            transition: transform 0.3s ease ,color 0.3s ease ,top 0.3s ease , font-size 0.3 ease;
+            pointer-events: none;
+        }
+    
+        & input:focus + label,input:not(:placeholder-shown)+label{
+            transform: translateY(-25px);
+            color:#000000;
+    
+            font-size: 13px;
+        }
+    }*/
+    .form-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 15px 12px 8px 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .form-label {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+       
+        color: #666;
+        font-size: 16px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+     
+        backdrop-filter: blur(10px);
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label {
+        top: -1px;
+        font-size: 12px;
+        color: #000000;
+        background: #fff;
+        font-weight: 500;
+     }
+   
+
+
+
     .controlunit select {
         height: 40px;
         width: 100%;
@@ -398,11 +465,7 @@ body {
        }
       
      
-    & #IDproduct{
-        padding: 10px;
-        margin-bottom:  10px;
-      
-    }
+   
     & .error-message{
         background: rgba(220, 53, 69, 0.2);
         border: 1px solid rgba(220, 53, 69, 0.5);
@@ -420,14 +483,7 @@ body {
     font-weight: 500;
     display: none;
 }
-  #firstname{
-    padding: 10px;
-    margin-bottom:  10px;
-   }
-   #lastname{
-    padding: 10px;
-    margin-bottom:  10px;
-   }
+ 
   /* ปุ่มปิด */
   .close-btn {
     background-color: crimson;
@@ -480,7 +536,61 @@ body {
     max-width: 400px;
     width: 90%;
     text-align: center; 
+    .form-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
 
+    .form-input {
+        width: 100%;
+        padding: 15px 12px 8px 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        background: transparent;
+        outline: none;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+    }
+
+    .form-label {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+       
+        color: #666;
+        font-size: 16px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+     
+        backdrop-filter: blur(10px);
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label {
+        top: -1px;
+        font-size: 12px;
+        color: #000000;
+        background: #fff;
+        font-weight: 500;
+     }
+   
+
+    &  .unitprodut-edit select {
+            height: 40px;
+            width: 340px;
+            padding: 10px;
+            margin-bottom:  20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+           
+           
+          
+           
+       }
     & .control-btn{
        
         & .btn-onedit{
@@ -516,16 +626,34 @@ body {
 
    
   }
-
-  #firstname-edit{
+  /* หน้าต่างแก้ไข  Product ในตาราง*/
+  #IDproduct-edit{
     padding: 10px;
     margin-bottom:  10px;
    }
-   #lastname-edit{
+   #nameproduct-edit{
+    padding: 10px;
+    margin-bottom:  10px;
+   }
+   #categoryproduct-edit{
+    padding: 10px;
+    margin-bottom:  10px;
+   }
+   #price-edit{
+    padding: 10px;
+    margin-bottom:  10px;
+   }
+   #unit-edit{
+    padding: 10px;
+    margin-bottom:  10px;
+   }
+   #unit-quantity{
     padding: 10px;
     margin-bottom:  10px;
    }
 
+
+   
 .alert-win{
     display: none;
     position: fixed;

@@ -94,11 +94,12 @@
                 <th>Id product</th>
                 <th>name</th>
                 <th>category</th>
-              
                 <th>price</th>
+                <th>cost</th>
+                <th>quantity</th>
                 <th>unit</th>
                 <th>update at</th>
-                <th>ฟังก์ชั่น</th>
+               
               </tr>
             </thead>
               <tbody id="tableBody"></tbody>
@@ -106,6 +107,7 @@
         </div>
         <div class="control-buttontable">
           <div class="button">
+            
             <button id="prevBtn" onclick="prevPage()">Previous</button>
             <span id="pageInfo" style="margin-left: 15px;"></span>  
             
@@ -117,16 +119,16 @@
       </div>
     
 
-  <!-- หน้าต่างไว้เพิ่มผู้ใช้ -->
-  <div id="customModal" class="modal">
+  <!-- หน้าต่างไว้เบิกของ -->
+  <div id="withdrawProduct" class="modal">
     <div class="modal-content">
      
     
-     <h1>เพิ่มสินค้า</h1>
+     <h1>เบิกสินค้า</h1>
      <div id="successMessage-add" class="success-message"></div>
      <div id="errorMessage-add" class="error-message"></div>
     
-     <input type="text" id="IDproduct" placeholder="ID สินค้า">
+     <input type="text" id="IDproduct" placeholder="ID สินค้า" oninput="myFunction()">
       <input type="text" id="nameproduct" placeholder="ชื่อ">
       <input type="text" id="category" placeholder="ประเภท">
       <input type="text" id="price" placeholder="ราคาขาย">
@@ -149,49 +151,15 @@
       </div>
       
     
-      <button class="btn-addproduct" onclick="addProduct()">เพิ่ม</button>
+      <button class="btn-addproduct" onclick="test()">เบิก</button>
      
       <button class="close-btn" onclick="closeModal()">ปิด</button>
     </div>
   </div>
 
-<!-- หน้าต่างไว้แก้ผู้ใช้ -->
-  <div id="customUser" class="User">
-    <div class="User-content">
-     <h1>แก้ไขผู้ใช้มาแก้ด้วย</h1>
 
-      <input type="hidden" id="hiddenInput" name="myValue" value="ข้อความที่ต้องการเก็บ">
-      <input type="text" id="firstname-edit" placeholder="ชื่อ">
-      <input type="text" id="lastname-edit" placeholder="นามสกุล">
-      <div class="control-btn">
-        <button class="btn-onedit"onclick="editUserInTable()">แก้ไขผู้ใช้</button>
-        <button class="close-btn" onclick="closeWindowEdit()">ปิด</button>
-     
-      </div>
-      </div>
-  </div>
 
-<!-- หน้าต่างไว้แสดงข้อความ alert  -->  
-  <div id="alertWindow" class="alert-win">
-    <div class="alert-content">
-      <input type="hidden" id="hiddenInputforDelete" name="myValue" value="ข้อความที่ต้องการเก็บ">
-        <h1>ลบสินค้า</h1>
-        <p id="id" class="userInfo"></p>
-        <p id="productid"></p>
-        <p id="categoryproduct"></p>
-       
-        <div class="control-btn">
-          <button class="btn-onDelete"onclick="confirmDeleteUser()">ยืนยัน</button>
-          <button class="close-btn" onclick="closeWindowEdit()">ปิด</button>
-       
-        </div>
-      </div>
-  </div>
-  
-  
-
-    </div>
-    
+    </div> 
    </div>
   </div>
 </div>
@@ -199,7 +167,7 @@
   
 
 
-<script src="js/miancontent.js"></script>
+<script src="js/stock.js"></script>
 
 </body>
 </html>

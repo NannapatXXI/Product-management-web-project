@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Nannapat.webLogin.entity.User;
+import com.Nannapat.webLogin.dto.quantityChange;
 import com.Nannapat.webLogin.entity.Product;
 import com.Nannapat.webLogin.services.UserService;
 import com.Nannapat.webLogin.services.ProductService;
@@ -149,8 +150,6 @@ public class AuthController {
 
     @PostMapping("/createProduct")
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        System.out.println("IDPRO = " + product.getIDPRO());
-
         return ResponseEntity.ok(productService.createProduct(product));
     }
 
@@ -168,15 +167,53 @@ public class AuthController {
 
     @DeleteMapping("/deleteProductByID/{id}")
     public ResponseEntity<?> deleteProductByID(@PathVariable Long id) {
-    try {
-        productService.findById(id); // ถ้าไม่เจอจะ throw อยู่แล้ว
-        productService.deleteProductById(id);
-        return ResponseEntity.ok("ลบสินค้าเรียบร้อยแล้ว ID: " + id);
-    } catch (RuntimeException e) {
-        return ResponseEntity.status(404).body("ไม่พบสินค้า ID: " + id);
-    }
-}
 
+        try {
+            productService.findById(id); // ถ้าไม่เจอจะ throw อยู่แล้ว
+            productService.deleteProductById(id);
+            return ResponseEntity.ok("ลบสินค้าเรียบร้อยแล้ว ID: " + id);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body("ไม่พบสินค้า ID: " + id);
+        }
+    }
+
+    @PutMapping("/editProduct/{id}")
+    public ResponseEntity<?> editProduct(@PathVariable Long id,@RequestBody Product product){
+        try {
+            System.out.println("Request to update id: " + id);
+            System.out.println("Body received: " + product); 
+       
+            product.setProductId(id);
+            return ResponseEntity.ok(productService.updateProduct(product));
+   
+            } catch (RuntimeException e) {
+                return ResponseEntity.status(404).body("ไม่พบสินค้า ID: " + id);
+            } 
+    }
+
+    @PutMapping("/increaseQuantity/{id}/price-cost")
+    public ResponseEntity<Product> increaseProducts(
+        @PathVariable("id") Long productId,
+        @RequestBody quantityChange request) {
+
+     Product increaseProducts = productService.quantityIncrease(productId,request.getQuantityChange());
+
+    return ResponseEntity.ok(increaseProducts);
+    }
+
+    @PutMapping("/decreaseQuantity/{id}/price-cost")
+    public ResponseEntity<Product> decreaseProducts(
+        @PathVariable("id") Long productId,
+        @RequestBody quantityChange request) {
+
+     Product increaseProducts = productService.quantityDecrease(productId,request.getQuantityChange());
+
+    return ResponseEntity.ok(increaseProducts);
+    }
+
+
+
+   
     @GetMapping
     public Page<Product> getUsers(@PageableDefault(size = 5, page = 0) Pageable pageable) {
         Page<Product> pageResult = productService.getAllProduct(pageable);
@@ -184,7 +221,7 @@ public class AuthController {
 
          return pageResult;
     
-}
+    }
 
 }
 
